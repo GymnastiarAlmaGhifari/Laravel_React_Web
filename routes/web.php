@@ -25,19 +25,14 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/about', function () {
-    return Inertia::render('About');
-})->middleware(['auth', 'verified'])->name('about');
-
-Route::get('/blog', function () {
-    return Inertia::render('Blog');
-})->middleware(['auth', 'verified'])->name('blog');
-
-
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
+    Route::get('/about', fn () => Inertia::render('About'))->name('about');
+    Route::get('/blog', fn () => Inertia::render('Blog'))->name('blog');
+});
+// penggunaan anonymous function atau lambda function (fn() =>) 
+// untuk menggantikan function () {}. Penggunaan anonymous function ini mempersingkat penulisan kode 
+// dan membuat kodingan lebih mudah dibaca dan dipahami.
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
