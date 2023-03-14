@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SuperController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,6 +30,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
     Route::get('/about', fn () => Inertia::render('About'))->name('about');
     Route::get('/blog', fn () => Inertia::render('Blog'))->name('blog');
+});
+Route::middleware(['auth', 'verified', 'role:super'])->group(function () {
+    Route::get('/super', [SuperController::class, 'index'])->name('super.index');
 });
 // penggunaan anonymous function atau lambda function (fn() =>) 
 // untuk menggantikan function () {}. Penggunaan anonymous function ini mempersingkat penulisan kode 

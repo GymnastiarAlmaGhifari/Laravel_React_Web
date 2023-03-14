@@ -1,9 +1,9 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 
-export default function Dashboard(props) {
+export default function Dashboard({ auth, errors }) {
     return (
-        <AuthenticatedLayout auth={props.auth} errors={props.errors}>
+        <AuthenticatedLayout auth={auth} errors={errors}>
             <Head title="Dashboard" />
             <section className="pt-10 overflow-hidden bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16 ">
                 <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
@@ -12,7 +12,7 @@ export default function Dashboard(props) {
                             <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
                                 Hey 👋 I am{" "}
                                 <span classNameName="flex">
-                                    Gymanstiar Alma Ghifari
+                                    {auth.user.name}
                                 </span>
                             </h2>
                             <p className="max-w-lg mt-3 text-xl leading-relaxed text-gray-600 md:mt-8">
@@ -665,7 +665,6 @@ export default function Dashboard(props) {
                     </div>
                 </div>
             </section>
-
         </AuthenticatedLayout>
     );
 }

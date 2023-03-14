@@ -34,11 +34,21 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            // 'auth.user.roles' => fn () => $request->user()
+            //     ? $request->user()->getRoleNames()
+            //     : null,
+            // 'auth.user.permissions' => fn () => $request->user()
+            //     ? $request->user()->getAllPermissions()
+            //     : null,
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
                     'location' => $request->url(),
                 ]);
             },
+            "flash" => [
+                "type" => $request->session()->get("type"),
+                "message" => $request->session()->get("message"),
+            ]
         ]);
     }
 }

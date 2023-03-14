@@ -31,7 +31,8 @@ export default function About(props) {
 
                         <div>
                             <h3 class="text-lg font-semibold text-gray-900">
-                                Hey! I am John, founder of Celebration.
+                                Hey! I am Gymnastiar Alma Ghifari, Software
+                                Enginer.
                             </h3>
                             <p class="mt-4 text-lg text-gray-700">
                                 Amet minim mollit non deserunt ullamco est sit
